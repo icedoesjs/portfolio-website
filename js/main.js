@@ -8,36 +8,6 @@ const statsSection = document.querySelector('.community')
 const serverName = document.querySelector('.server-name');
 const reposDisplayed = ["ice-fivem-js", "socket", "vehicle-hud", "disjs-logger", "discord.js-utilitys", "public-launcher"];
 
-$.getJSON(`https://discordapp.com/api/guilds/867806168897945630/widget.json`, function(data) {
-    var members = data.members;
-    var name = data.name;
-    var online = 0;
-
-    members.forEach(m => {
-        var status = Object.values(m);
-        if (status[4] === "online") online++;
-        return;
-    })
-    console.log(data)
-    // Online for members online
-    // name for server name
-    
-    serverName.innerHTML += `<a href="${data.instant_invite}">${name}</a>`
-    let listItem = document.createElement('li');
-    listItem.classList.add('stat');
-    listItem.innerHTML += `
-    <span><br>${devicons["Online"]} ${online}</span>`;
-    listItem.innerHTML += `
-    <span> ${devicons["Member"]} ${members.length}</span>`
-
-    communityStats.append(listItem)
-})
-
-async function repoMatch(data) {
-    if (!reposDisplayed.includes(data.name.toLowerCase())) return false;
-    return true;
-}
-
 // get list of user's public repos
 const getRepos = async () => {
     let repos = [];
