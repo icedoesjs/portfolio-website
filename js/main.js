@@ -8,6 +8,11 @@ const statsSection = document.querySelector('.community')
 const serverName = document.querySelector('.server-name');
 const reposDisplayed = ["ice-fivem-js", "socket", "vehicle-hud", "disjs-logger", "discord.js-utilitys", "public-launcher"];
 
+async function repoMatch(data) {
+    if (!reposDisplayed.includes(data.name.toLowerCase())) return false;
+    return true;
+}
+
 // get list of user's public repos
 const getRepos = async () => {
     let repos = [];
